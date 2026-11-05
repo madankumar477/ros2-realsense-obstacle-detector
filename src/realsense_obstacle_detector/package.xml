@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!-- Standalone maintainer/package metadata updated by E MADAN KUMAR (2026). -->
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>realsense_obstacle_detector</name>
+  <version>0.2.0</version>
+  <description>
+    Fail-safe close-range obstacle detection using the Intel RealSense D435i
+    depth camera. Publishes obstacle state, minimum distance, and diagnostic
+    alert topics for integration with a robot safety controller.
+  </description>
+  <maintainer email="madan.kumar@atimotors.com">E MADAN KUMAR</maintainer>
+  <license>Apache License 2.0</license>
+
+  <depend>rclpy</depend>
+  <depend>sensor_msgs</depend>
+  <depend>std_msgs</depend>
+  <depend>rcl_interfaces</depend>
+  <depend>tf2_ros</depend>
+  <exec_depend>python3-numpy</exec_depend>
+  <exec_depend>launch</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
+
+  <test_depend>python3-pytest</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>

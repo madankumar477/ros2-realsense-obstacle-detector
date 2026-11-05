@@ -1,0 +1,39 @@
+# Standalone camera defaults extracted and documented by E MADAN KUMAR (2026).
+# RealSense D435i obstacle detector configuration.
+# Values below are the camera-specific settings from the source workspace's
+# camera_obstacle_detection block, separated from the larger AMR config.
+# Measure the camera installation on your robot before changing geometry.
+
+/**:
+  ros__parameters:
+    # RealSense ROS 2 wrapper topics for camera_name:=camera, camera_namespace:=camera.
+    depth_image_topic: "/camera/camera/depth/image_rect_raw"
+    camera_info_topic: ""          # Empty: derive /camera/camera/depth/camera_info
+    depth_scale: 0.001              # 16UC1 depth values are millimetres
+
+    # Source-workspace camera settings (metres / radians).
+    detection_distance: 0.40        # Far edge of the close-range detection band
+    min_valid_depth: 0.25           # Exclude camera/robot face and near-range noise
+    camera_height: 0.077            # Lens height above floor; measured in source workspace
+    camera_pitch: -0.0274           # Radians; source workspace floor-fit estimate
+    floor_margin: 0.03
+    floor_height_margin: 0.025
+    corridor_half_width: 0.45       # Tune to the robot footprint plus margin
+
+    # Image ROI. The detector also applies the physical travel-corridor test.
+    roi_top_fraction: 0.10
+    roi_left_fraction: 0.0
+    roi_right_fraction: 0.0
+
+    # Fail-safe latch: block immediately; clear only after stable clean frames.
+    obstacle_pixel_threshold: 20
+    release_pixel_threshold: 10
+    release_clear_frames: 5
+    min_hold_time: 0.5
+    min_usable_fraction: 0.20
+    stale_timeout: 0.5
+    publish_rate: 20.0
+
+    # Optional TF geometry cross-check. The frames must exist in your robot TF tree.
+    floor_frame: "base_footprint"
+    camera_frame: "camera_link"
